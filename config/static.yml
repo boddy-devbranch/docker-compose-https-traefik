@@ -9,7 +9,8 @@ providers:
   docker:
     endpoint: "unix:///var/run/docker.sock"
     watch: true
-    exposedByDefault: false
+    exposedByDefault: true
+    network: traefik
 
   file:
     filename: /etc/traefik/dynamic.yml
@@ -27,5 +28,6 @@ entryPoints:
 #        entryPoint:
 #          to: https
 #          scheme: https
+
   https:
     address: ":443"

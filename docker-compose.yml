@@ -20,22 +20,24 @@ services:
       # Map the certificats into the container
       - ./certs:/etc/certs:ro
     networks:
+      - default
       - traefik
 
 
-#  whoami:
-#    image: containous/whoami
-#    container_name: whoami
-#    security_opt:
-#      - no-new-privileges:true
-#    networks:
-#      - traefik
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.docker.network=traefik"
-#      - "traefik.http.routers.${PROJECT_NAME}_whoami.rule=Host(`${PROJECT_BASE_URL}`)"
+  whoami:
+    image: containous/whoami
+    container_name: whoami
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - traefik
+    labels:
+      - "traefik.http.routers.${PROJECT_NAME}_whoami.rule=Host(`${PROJECT_BASE_URL}`)"
+
 #      ### enable https
 #      - "traefik.http.routers.${PROJECT_NAME}_whoami.tls=true"
+#      ### If port is different than 80, use the following service:
+#      # - "traefik.http.services.${PROJECT_NAME}_whoami.loadbalancer.server.port=8008
 #      ### Next 4 are redirect http to https
 #      - "traefik.http.middlewares.${PROJECT_NAME}_whoami_http.redirectscheme.scheme=https"
 #      - "traefik.http.routers.${PROJECT_NAME}_whoami_http.entrypoints=http"
