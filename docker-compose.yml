@@ -24,16 +24,16 @@ services:
       - traefik
 
 
-  whoami:
-    image: containous/whoami
-    container_name: whoami
-    security_opt:
-      - no-new-privileges:true
-    networks:
-      - traefik
-    labels:
-      - "traefik.http.routers.${PROJECT_NAME}_whoami.rule=Host(`${PROJECT_BASE_URL}`)"
-
+#  whoami:
+#    image: containous/whoami
+#    container_name: whoami
+#    security_opt:
+#      - no-new-privileges:true
+#    networks:
+#      - default
+#      - traefik
+#    labels:
+#      - "traefik.http.routers.${PROJECT_NAME}_whoami.rule=Host(`${PROJECT_BASE_URL}`)"
 #      ### enable https
 #      - "traefik.http.routers.${PROJECT_NAME}_whoami.tls=true"
 #      ### If port is different than 80, use the following service:
