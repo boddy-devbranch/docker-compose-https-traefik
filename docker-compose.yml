@@ -22,6 +22,26 @@ services:
     networks:
       - traefik
 
+
+#  whoami:
+#    image: containous/whoami
+#    container_name: whoami
+#    security_opt:
+#      - no-new-privileges:true
+#    networks:
+#      - traefik
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.docker.network=traefik"
+#      - "traefik.http.routers.${PROJECT_NAME}_whoami.rule=Host(`${PROJECT_BASE_URL}`)"
+#      ### enable https
+#      - "traefik.http.routers.${PROJECT_NAME}_whoami.tls=true"
+#      ### Next 4 are redirect http to https
+#      - "traefik.http.middlewares.${PROJECT_NAME}_whoami_http.redirectscheme.scheme=https"
+#      - "traefik.http.routers.${PROJECT_NAME}_whoami_http.entrypoints=http"
+#      - "traefik.http.routers.${PROJECT_NAME}_whoami_http.middlewares=${PROJECT_NAME}_whoami_http"
+#      - "traefik.http.routers.${PROJECT_NAME}_whoami_http.rule=Host(`adminer-${PROJECT_BASE_URL}`)"
+
 networks:
   traefik:
     external: true
