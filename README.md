@@ -1,18 +1,10 @@
 # Traefik v2 HTTPS (SSL) on localhost
 
-This repo is a minimal template to use Traefik v2 on localhost with HTTPS support.
+
+Clone this repo.
 
 
-
-To get started, just clone this repo:
-
-```
-git clone https://github.com/Heziode/traefik-v2-https-ssl-localhost.git
-```
-
-
-
-Next, go to the root of the repo (`cd traefik-v2-https-ssl-localhost`) and generate certificates using [mkcert](https://github.com/FiloSottile/mkcert) :
+Next, go to the root of the repo and generate certificates using [mkcert](https://github.com/FiloSottile/mkcert) :
 
 ```bash
 # If it's the firt install of mkcert, run
@@ -26,7 +18,7 @@ mkcert -cert-file certs/local-cert.pem -key-file certs/local-key.pem "docker.loc
 Create networks that will be used by Traefik:
 
 ```bash
-docker network create proxy
+docker network create traefik
 ``` 
 
 
@@ -34,25 +26,18 @@ Now, start containers with :
 
 ```bash
 # Start Traefik
-docker-compose -f docker-compose.yml up -d
-# Start "whoami" example
-docker-compose -f whoami.yml up
+docker-compose up -d
+# Start "whoami-https" example
+docker-compose -f whoami-https.yml up
+# or "whoami-http" example
+docker-compose -f whoami-http.yml up
 ```
 
+You can now go to your browser at HTTPS [whoami-https.docker.localhost](https://whoami-https.docker.localhost),
+or ar HTTP [whoami.docker.localhost](http://whoami.docker.localhost)
 
-
-You can now go to your browser at [whoami.docker.localhost](https://whoami.docker.localhost), enjoy :rocket: !
+*Note: see .env for variables*
 
 *Note: you can access to Træfik dashboard at: [traefik.docker.localhost](https://traefik.docker.localhost)*
 
-Don't forget that you can also map TCP and UDP through Træfik.
 
-## Code of Conduct
-
-This project adheres to the [Contributor Covenant](https://www.contributor-covenant.org/). By participating in this project you agree to abide by its terms.
-
-
-
-# License
-
-MIT
